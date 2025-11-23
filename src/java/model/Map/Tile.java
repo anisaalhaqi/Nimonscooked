@@ -1,30 +1,53 @@
 package java.model.Map;
 
+import java.model.Item.Item;
+import java.model.Station.Station;
+import java.model.Station.StationFactory;
+
 public class Tile {
     private final int x;
     private final int y;
-    private final boolean isWall;
-    private final Station stationContained; // Objek station
+    private String symbol;
+    private String state;
+    private final Station stationContained;
     private Item itemContained;     // Item yang diletakkan chef di suatu tile, bisa jadi null
 
-    public Tile(int x, int y, char symbol) {
+    public Tile(int x, int y, String symbol) {
         this.x = x;
         this.y = y;
+        this.symbol = symbol;
+        this.state = TileState.fromSymbol(symbol);
+        this.itemContained = null;
 
-        if(symbol == 'X') {
-            this.isWall = true;
+        if(isWall(x, y) || isWalkable(x, y)) {
             this.stationContained = null;
-        } else if(isStationSymbol(symbol)) { // harus ada pengecekan apakah simbol termasuk di simbol untuk station
-            this.isWall = false;
-            this.stationContained = createStationObject(symbol);    // jika ya, isi stationContained dengan objek Station tersebut
         } else {
-            this.isWall = false;
-            this.stationContained = null;
+            this.stationContained = StationFactory.createStationObject(symbol);
         }
     }
 
-    public boolean isWall() {
-        return isWall;
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String symbol) {
+        this.state = TileState.fromSymbol(symbol);
+    }
+
+    public boolean isWall(int x, int y) {
+        return getState().equals("WALL");
+    }
+
+    public boolean isWalkable(int x, int y) {
+        return getState().equals("WALKABLE");
     }
 
     public Station getStation() {

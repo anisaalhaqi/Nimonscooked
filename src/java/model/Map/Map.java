@@ -1,24 +1,31 @@
 package java.model.Map;
 
+import java.model.Chef.Chef;
+import java.util.List;
+
 public class Map {
     private static final int width = 14;
     private static final int height = 10;
-    private final Tile[][] tiles = new Tile[height][width];
+    private final Tile[][] tiles;
+    private final MapType mapConfig;
     private final String[][] initialLayout = {}
 
-    public final void Map(String[][] initialLayout, List <Chef> chef) {
-        for(int i = 0; i < width; i++) {
-            for(int j = 0; j < height; j++) {
-                Tile addTile = new Tile(i, j, "Station");
-            }
-        }
+    public Map(MapType mapConfig, List <Chef> chef) {
+        this.mapConfig = mapConfig;
+        this.tiles = mapConfig.getTiles();
+
+        // Chef
     }
 
-    public Tile getTiles(int x, int y) {
-        return tiles[x][y];
+    // bisa throw exception kalau x tidak di rentang 1-width dan y tidak di rentang 1-height
+    public Tile getTile(int x, int y) {
+        if (x >= 0 && x < width && y >= 0 && y < height) {
+            return tiles[y][x]; 
+        }
+        return null;
     }
 
     public boolean isWalkable(int x, int y) {
-
+        
     }
 }
