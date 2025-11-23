@@ -1,2 +1,3 @@
 # Nimonscooked
-Nimonscooked is a Java-based game where players control two chefs to rapidly process Ingredients at various Stations to complete customer Orders from the hungry Evil Nimons. It emphasizes core OOP principles.
+
+Nimonscooked is a game developed using the Java programming language with the main goal of managing a restaurant kitchen and cooking dishes as quickly as possible to serve customers who are facing massive hunger.
