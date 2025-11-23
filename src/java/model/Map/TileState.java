@@ -21,7 +21,7 @@ public enum TileState {
 
     public static String fromSymbol(String symbol) {
         for(TileState state: TileState.values()) {
-            if(state.symbol == symbol) {
+            if(state.symbol.equals(symbol)) {
                 return state.getName();
             }
         }
