@@ -50,6 +50,10 @@ public class Tile {
         return getState().equals("WALKABLE");
     }
 
+    public boolean isStation(int x, int y) {
+        return getStation() == null;
+    }
+
     public Station getStation() {
         return stationContained;
     }
