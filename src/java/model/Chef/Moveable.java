@@ -1,5 +1,5 @@
 package java.model.Chef;
-import java.model.Map.Map;
+import java.model.Map.*;
 
 public interface Moveable {
     public void moveUp(Map map);
