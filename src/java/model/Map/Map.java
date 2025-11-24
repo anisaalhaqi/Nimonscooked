@@ -1,8 +1,5 @@
 package java.model.Map;
-
-import java.model.Chef.Chef;
 import java.model.Item.Item;
-import java.util.List;
 
 public class Map {
     private static final int width = 14;
@@ -10,7 +7,7 @@ public class Map {
     private final Tile[][] tiles;
     private final MapType mapConfig;
 
-    public Map(MapType mapConfig, List <Chef> allChef) {
+    public Map(MapType mapConfig) {
         this.mapConfig = mapConfig;
         this.tiles = mapConfig.getTiles();
     }
@@ -40,10 +37,10 @@ public class Map {
     }
 
     public void placeItemOnMap(int x, int y, Item item) {
-        tiles[y][x].setItem(item);
+        getTile(x, y).setItem(item);
     }
 
-    public void removeItemOnMap(int x, int y) {
-        tiles[y][x].removeItem();
+    public Item removeItemOnMap(int x, int y) {
+        return getTile(x, y).removeItem();
     }
 }
