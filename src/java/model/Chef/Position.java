@@ -1,4 +1,4 @@
-package java.model.Chef; // is this necessary
+package java.model.Chef; 
 
 public class Position {
     private int x;
