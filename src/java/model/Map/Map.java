@@ -8,7 +8,6 @@ public class Map {
     private static final int height = 10;
     private final Tile[][] tiles;
     private final MapType mapConfig;
-    private final String[][] initialLayout = {}
 
     public Map(MapType mapConfig, List <Chef> chef) {
         this.mapConfig = mapConfig;
@@ -17,7 +16,7 @@ public class Map {
         // Chef
     }
 
-    // bisa throw exception kalau x tidak di rentang 1-width dan y tidak di rentang 1-height
+    // bisa throw exception kalau x tidak di rentang 0 sampai (width-1) dan y tidak di rentang 0 sampai (height-1)
     public Tile getTile(int x, int y) {
         if (x >= 0 && x < width && y >= 0 && y < height) {
             return tiles[y][x]; 

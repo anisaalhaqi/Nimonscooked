@@ -26,10 +26,11 @@ public class PizzaMap extends MapType {
 
     @Override
     protected void initialLayout() {
-        for(int i = 1; i <= getHeight(); i++) {
-            for(int j = 1; j <= getWidth(); j++) {
-                tiles[i][j].setSymbol(PIZZA_LAYOUT[j-1]);
-                tiles[i][j].setState(PIZZA_LAYOUT[j-1]);
+        for(int i = 0; i < getHeight(); i++) {
+            String rowLayout = PIZZA_LAYOUT[i];
+            for(int j = 0; j < getWidth(); j++) {
+                String symbol = String.valueOf(rowLayout.charAt(j));
+                tiles[i][j] = new Tile(i, j, symbol);
             }
         }
     }
