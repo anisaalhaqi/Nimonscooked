@@ -1,6 +1,7 @@
 package java.model.Map;
 
 import java.model.Chef.Chef;
+import java.model.Item.Item;
 import java.util.List;
 
 public class Map {
@@ -9,22 +10,40 @@ public class Map {
     private final Tile[][] tiles;
     private final MapType mapConfig;
 
-    public Map(MapType mapConfig, List <Chef> chef) {
+    public Map(MapType mapConfig, List <Chef> allChef) {
         this.mapConfig = mapConfig;
         this.tiles = mapConfig.getTiles();
-
-        // Chef
     }
 
-    // bisa throw exception kalau x tidak di rentang 0 sampai (width-1) dan y tidak di rentang 0 sampai (height-1)
     public Tile getTile(int x, int y) {
         if (x >= 0 && x < width && y >= 0 && y < height) {
             return tiles[y][x]; 
         }
-        return null;
+        throw new IndexOutOfBoundsException("Coordinates (" + x + ", " + y + ") are outside the map bounds.");
     }
 
     public boolean isWalkable(int x, int y) {
-        
+        try {
+            getTile(x, y); 
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        }
+
+        Tile targetTile = tiles[y][x];
+
+        if(targetTile.isWall(x, y)) {
+            return false;
+        } else if(targetTile.isStation(x, y)) {
+            return false;
+        }
+        return true;
+    }
+
+    public void placeItemOnMap(int x, int y, Item item) {
+        tiles[y][x].setItem(item);
+    }
+
+    public void removeItemOnMap(int x, int y) {
+        tiles[y][x].removeItem();
     }
 }
